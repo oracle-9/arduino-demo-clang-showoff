@@ -2,7 +2,7 @@
 #include "include/melody.h"
 
 static void play();
-static void do_nothing();
+static void nop();
 static void button_interrupt_handler();
 
 typedef void job_fn_t();
@@ -33,11 +33,11 @@ static void play() {
     note_iter = (note_iter + 1) % MELODY_LEN;
 }
 
-static void do_nothing() {}
+static void nop() {}
 
 static void button_interrupt_handler() {
     if (work == play) {
-        work = do_nothing;
+        work = nop;
     } else {
         work = play;
     }
